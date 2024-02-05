@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'polltastic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'polls.db',
+        'NAME': BASE_DIR / 'db.polltastic',
     }
 }
 
