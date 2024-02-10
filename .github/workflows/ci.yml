@@ -1,4 +1,4 @@
-name: Django CI
+name: Poll CI
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
     - name: Run Tests
       run: |
         cd polltastic/
-        python manage.py test
+        python manage.py test -v 2
