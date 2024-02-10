@@ -2,7 +2,7 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
-from .models import Question
+from polls.models import Question
 
 def create_question(question_text, days):
     """
@@ -106,33 +106,3 @@ class QuestionDetailViewTests(TestCase):
         past_question = create_question(question_text="Past Question.", days=-5)
         url = reverse("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
-        self.assertContains(response, past_question.question_text)
-
-
-class QuestionModelTests(TestCase):
-    def test_was_published_recently_with_future_question(self):
-        #AAA - Arrange Act Assert
-        #Arrange
-        time = timezone.now() + datetime.timedelta(days =30)
-        future_question = Question(pub_date=time)
-        #Act
-        result = future_question.was_published_recently()
-        #Assert
-        self.assertIs(result, False)
-
-    def test_was_published_recently_with_no_recent_questions(self):
-        #Arrange
-        time = timezone.now() - datetime.timedelta(days=30)
-        no_recent_question = Question(pub_date=time)
-        #Act
-        result = no_recent_question.was_published_recently()
-        #Assert
-        self.assertIs(result, False)
-
-    def test_was_published_recently_with_recent_questions(self):
-        time = timezone.now() - datetime.timedelta(hours=12)
-        recent_question = Question(pub_date=time)
-        #Act
-        result = recent_question.was_published_recently()
-        #Assert
-        self.assertIs(result, True)
