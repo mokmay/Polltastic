@@ -27,8 +27,5 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        pwd
-        ls -l
-        which python
-        ls -l polltastic/
-        python3 manage.py test
+        cd polltastic/
+        python manage.py test
