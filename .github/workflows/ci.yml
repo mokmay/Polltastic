@@ -29,5 +29,6 @@ jobs:
       run: |
         pwd
         ls -l
-        which python3
+        which python
+        ls -l ../
         python3 manage.py test
